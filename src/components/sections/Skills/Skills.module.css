@@ -1,0 +1,152 @@
+.skills {
+  padding: 70px 0;
+}
+
+/* ---------- section head ---------- */
+.sectionHead {
+  max-width: 640px;
+  margin-bottom: var(--space-xl);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.diamond {
+  width: 7px;
+  height: 7px;
+  background: var(--color-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.heading {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.description {
+  color: var(--color-text-muted);
+  font-size: 1.02rem;
+}
+
+/* ---------- groups ---------- */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.groupTitle {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-faint);
+  margin-bottom: 18px;
+}
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.skillRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 10px;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.skillRow:last-child {
+  border-bottom: none;
+}
+
+.skillName {
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+/* ---------- weave cells ---------- */
+.cells {
+  display: flex;
+  gap: 5px;
+}
+
+.cell {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+}
+
+.cellFilled {
+  background: var(--color-gold);
+  border-color: transparent;
+}
+
+/* ---------- learning strip ---------- */
+.learning {
+  margin-top: var(--space-lg);
+  padding: 18px 24px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.learningLabel {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+}
+
+.chipRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--color-teal-soft);
+  color: var(--color-teal);
+  border: 1px solid rgba(42, 140, 122, 0.3);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+  .groups {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .groups {
+    padding: var(--space-md);
+  }
+}

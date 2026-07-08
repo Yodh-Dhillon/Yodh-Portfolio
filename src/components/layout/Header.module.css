@@ -1,0 +1,201 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(22, 13, 14, 0.6);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease-standard),
+    background 0.3s var(--ease-standard);
+}
+
+.header.scrolled {
+  border-bottom-color: var(--color-border);
+  background: rgba(22, 13, 14, 0.85);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 18px;
+}
+
+/* ---------- logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dim));
+  color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ---------- desktop nav ---------- */
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.navList a {
+  position: relative;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding-block: 4px;
+  transition: color 0.2s ease;
+}
+
+.navList a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    var(--color-gold) 60%,
+    transparent 0%
+  );
+  background-size: 6px 1px;
+  transition: width 0.25s var(--ease-standard);
+}
+
+.navList a:hover {
+  color: var(--color-text);
+}
+
+.navList a:hover::after {
+  width: 100%;
+}
+
+/* ---------- CTA button ---------- */
+.cta {
+  display: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-bg);
+  background: var(--color-gold);
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px -8px rgba(217, 164, 65, 0.5);
+}
+
+/* ---------- burger (mobile) ---------- */
+.burger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.burger span,
+.burger span::before,
+.burger span::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.burger span::before {
+  transform: translateY(-6px);
+}
+
+.burger span::after {
+  transform: translateY(6px);
+}
+
+.burgerOpen {
+  background: transparent !important;
+}
+
+.burgerOpen::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.burgerOpen::after {
+  transform: translateY(0) rotate(-45deg);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (min-width: 860px) {
+  .cta {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 859px) {
+  .nav {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg-elevated);
+    border-bottom: 1px solid var(--color-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s var(--ease-standard);
+  }
+
+  .navOpen {
+    max-height: 400px;
+  }
+
+  .navList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 1.5rem 20px;
+  }
+
+  .navList li {
+    width: 100%;
+  }
+
+  .navList a {
+    display: block;
+    padding-block: 14px;
+    width: 100%;
+  }
+
+  .cta {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}

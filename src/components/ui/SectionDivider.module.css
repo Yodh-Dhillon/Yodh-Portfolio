@@ -1,0 +1,63 @@
+.divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1px;
+  margin-block: -1px;
+}
+
+.line {
+  width: 100%;
+  max-width: var(--max-width);
+  height: 24px;
+  overflow: visible;
+}
+
+.stitch {
+  stroke: var(--color-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  stroke-dashoffset: 90;
+  transition: stroke-dashoffset 1.1s var(--ease-standard),
+    stroke 0.6s ease;
+}
+
+.stitchRight {
+  stroke-dashoffset: -90;
+}
+
+.stitch.drawn {
+  stroke-dashoffset: 0;
+  stroke: var(--color-gold-dim);
+}
+
+.diamond {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-strong);
+  transform: rotate(45deg) scale(0.6);
+  opacity: 0;
+  transition: transform 0.5s var(--ease-standard) 0.5s,
+    opacity 0.4s ease 0.5s, border-color 0.5s ease 0.5s,
+    background 0.5s ease 0.5s;
+}
+
+.diamondPop {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+  border-color: var(--color-gold);
+  background: var(--color-gold-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stitch,
+  .diamond {
+    transition: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}

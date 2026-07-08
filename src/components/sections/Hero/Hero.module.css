@@ -1,0 +1,148 @@
+.hero {
+  padding-block: 80px 96px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* ---------- copy ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 26px;
+}
+
+.diamond {
+  width: 7px;
+  height: 7px;
+  background: var(--color-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.headline {
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.accent {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-gold);
+}
+
+.subhead {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-bottom: 36px;
+}
+
+/* ---------- actions ---------- */
+.actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.btnPrimary,
+.btnGhost {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btnPrimary {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -8px rgba(217, 164, 65, 0.5);
+}
+
+.btnGhost {
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.btnGhost:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+/* ---------- stats ---------- */
+.statRow {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-faint);
+}
+
+/* ---------- visual ---------- */
+.visual {
+  display: flex;
+  justify-content: center;
+}
+
+.weaveSvg {
+  width: 100%;
+  max-width: 340px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 940px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .hero {
+    padding-block: 140px 64px;
+  }
+
+  .visual {
+    order: -1;
+  }
+
+  .weaveSvg {
+    max-width: 220px;
+  }
+}
