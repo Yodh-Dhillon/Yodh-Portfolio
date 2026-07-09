@@ -21,7 +21,7 @@ export default function Home() {
       addressRegion: "Punjab",
       addressCountry: "IN",
     },
-    sameAs: [siteConfig.socials.github, siteConfig.socials.linkedin],
+    sameAs: [siteConfig.socials.github],
     knowsAbout: ["React", "Next.js", "JavaScript", "Web Development", "SEO"],
   };
 
