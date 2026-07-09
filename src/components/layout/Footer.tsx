@@ -34,15 +34,6 @@ export default function Footer() {
               ⌥
             </a>
             <a
-              href={siteConfig.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className={styles.socialIcon}
-            >
-              in
-            </a>
-            <a
               href={`mailto:${siteConfig.email}`}
               aria-label="Email"
               className={styles.socialIcon}

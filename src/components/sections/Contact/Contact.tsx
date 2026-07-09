@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, useRef, FormEvent } from "react";
 import { siteConfig, contactContent, formspreeEndpoint } from "@/data/siteConfig";
 import styles from "./Contact.module.css";
 
@@ -8,15 +8,33 @@ type FormStatus = "idle" | "loading" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
 
-    // Honeypot check — bots fill every field, real users never see this one.
     const honeypot = form.elements.namedItem("company") as HTMLInputElement;
     if (honeypot && honeypot.value !== "") {
-      // Silently drop the submission without hitting Formspree at all.
       setStatus("success");
       form.reset();
       return;
@@ -44,10 +62,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className={styles.contact}>
+    <section
+      id="contact"
+      ref={sectionRef}
+      className={`${styles.contact} ${inView ? styles.inView : ""}`}
+    >
       <div className="container">
         <div className={styles.grid}>
-          <div className={styles.side}>
+          <div className={`${styles.side} ${styles.reveal}`}>
             <span className={styles.eyebrow}>
               <span className={styles.diamond} aria-hidden="true" />
               {contactContent.eyebrow}
@@ -55,7 +77,11 @@ export default function Contact() {
             <h2 className={styles.heading}>{contactContent.heading}</h2>
             <p className={styles.description}>{contactContent.description}</p>
 
-            <a href={`mailto:${siteConfig.email}`} className={styles.contactLink}>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className={`${styles.contactLink} ${styles.reveal}`}
+              style={{ transitionDelay: "0.15s" }}
+            >
               <span className={styles.icon} aria-hidden="true">✉</span>
               {siteConfig.email}
             </a>
@@ -63,19 +89,11 @@ export default function Contact() {
               href={siteConfig.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.contactLink}
+              className={`${styles.contactLink} ${styles.reveal}`}
+              style={{ transitionDelay: "0.25s" }}
             >
               <span className={styles.icon} aria-hidden="true">⌥</span>
-              GitHub — YodhDhillon21
-            </a>
-            <a
-              href={siteConfig.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.contactLink}
-            >
-              <span className={styles.icon} aria-hidden="true">in</span>
-              LinkedIn
+              GitHub — Yodh-Dhillon
             </a>
           </div>
 
@@ -96,8 +114,11 @@ export default function Contact() {
               </button>
             </div>
           ) : (
-            <form className={styles.form} onSubmit={handleSubmit}>
-              {/* Honeypot field — hidden from real users via CSS, bots fill it anyway */}
+            <form
+              className={`${styles.form} ${styles.reveal}`}
+              style={{ transitionDelay: "0.2s" }}
+              onSubmit={handleSubmit}
+            >
               <input
                 type="text"
                 name="company"

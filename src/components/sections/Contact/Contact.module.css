@@ -196,6 +196,26 @@
   color: var(--color-gold-dim);
 }
 
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-standard), transform 0.7s var(--ease-standard);
+}
+
+.inView .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */

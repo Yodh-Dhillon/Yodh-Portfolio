@@ -2,6 +2,38 @@
   padding: 70px 0;
 }
 
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-standard), transform 0.7s var(--ease-standard);
+}
+
+.inView .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tagReveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.inView .tagReveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .tagReveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ---------- section head ---------- */
 .sectionHead {
   max-width: 640px;
@@ -53,6 +85,14 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
+  transition: opacity 0.7s var(--ease-standard),
+    transform 0.7s var(--ease-standard), border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- browser frame mock ---------- */
@@ -97,11 +137,17 @@
   position: relative;
   flex: 1;
   min-height: 260px;
+  overflow: hidden;
 }
 
 .image {
   object-fit: cover;
   object-position: top;
+  transition: transform 0.5s var(--ease-standard);
+}
+
+.card:hover .image {
+  transform: scale(1.03);
 }
 
 /* ---------- body ---------- */

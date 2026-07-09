@@ -1,13 +1,40 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { projects } from "@/data/projects";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <>
-    <section id="projects" className={styles.projects}>
+    <section
+      id="projects"
+      ref={sectionRef}
+      className={`${styles.projects} ${inView ? styles.inView : ""}`}
+    >
       <div className="container">
-        <div className={styles.sectionHead}>
+        <div className={`${styles.sectionHead} ${styles.reveal}`}>
           <span className={styles.eyebrow}>
             <span className={styles.diamond} aria-hidden="true" />
             Projects
@@ -20,8 +47,12 @@ export default function Projects() {
         </div>
 
         <div className={styles.list}>
-          {projects.map((project) => (
-            <article key={project.title} className={styles.card}>
+          {projects.map((project, pi) => (
+            <article
+              key={project.title}
+              className={`${styles.card} ${styles.reveal}`}
+              style={{ transitionDelay: `${0.1 + pi * 0.15}s` }}
+            >
               <div className={styles.frame}>
                 <div className={styles.chrome}>
                   <span className={styles.dot} />
@@ -45,8 +76,12 @@ export default function Projects() {
                 <p className={styles.text}>{project.description}</p>
 
                 <div className={styles.tags}>
-                  {project.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>
+                  {project.tags.map((tag, ti) => (
+                    <span
+                      key={tag}
+                      className={`${styles.tag} ${styles.tagReveal}`}
+                      style={{ transitionDelay: `${0.35 + pi * 0.15 + ti * 0.06}s` }}
+                    >
                       {tag}
                     </span>
                   ))}
@@ -58,7 +93,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.primaryLink}
-                    >
+                  >
                     Live Demo →
                   </a>
                   <a
@@ -75,7 +110,10 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className={styles.moreSoon}>
+        <div
+          className={`${styles.moreSoon} ${styles.reveal}`}
+          style={{ transitionDelay: `${0.2 + projects.length * 0.15}s` }}
+        >
           <span>
             More case studies are in progress — next up is a full client
             build with a before/after performance breakdown.
@@ -84,8 +122,7 @@ export default function Projects() {
             Have a project first?
           </a>
         </div>
-        </div>
+      </div>
     </section>
-    </>
   );
 }

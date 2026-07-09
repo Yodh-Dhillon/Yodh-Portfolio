@@ -6,19 +6,33 @@ export default function Hero() {
     <section id="home" className={styles.hero}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.copy}>
-          <span className={styles.eyebrow}>
+          <span
+            className={`${styles.eyebrow} ${styles.animate}`}
+            style={{ animationDelay: "0.05s" }}
+          >
             <span className={styles.diamond} aria-hidden="true" />
             {heroContent.eyebrow}
           </span>
 
-          <h1 className={styles.headline}>
+          <h1
+            className={`${styles.headline} ${styles.animate}`}
+            style={{ animationDelay: "0.15s" }}
+          >
             {heroContent.headline}{" "}
             <em className={styles.accent}>{heroContent.headlineAccent}</em>
           </h1>
 
-          <p className={styles.subhead}>{heroContent.subhead}</p>
+          <p
+            className={`${styles.subhead} ${styles.animate}`}
+            style={{ animationDelay: "0.28s" }}
+          >
+            {heroContent.subhead}
+          </p>
 
-          <div className={styles.actions}>
+          <div
+            className={`${styles.actions} ${styles.animate}`}
+            style={{ animationDelay: "0.4s" }}
+          >
             <a href="#projects" className={styles.btnPrimary}>
               View My Work
             </a>
@@ -27,7 +41,10 @@ export default function Hero() {
             </a>
           </div>
 
-          <dl className={styles.statRow}>
+          <dl
+            className={`${styles.statRow} ${styles.animate}`}
+            style={{ animationDelay: "0.52s" }}
+          >
             {heroContent.stats.map((stat) => (
               <div key={stat.label} className={styles.stat}>
                 <dt className={styles.statValue}>{stat.value}</dt>
@@ -63,7 +80,7 @@ function WeavePattern() {
 
   return (
     <svg viewBox="0 0 300 300" className={styles.weaveSvg} aria-hidden="true">
-      {cells.map(({ r, c, filled }) => {
+      {cells.map(({ r, c, filled }, i) => {
         const cx = 30 + c * 60;
         const cy = 30 + r * 60;
         const size = 18;
@@ -82,6 +99,8 @@ function WeavePattern() {
             stroke={filled ? "transparent" : "var(--color-border-strong)"}
             strokeWidth="1"
             opacity={filled ? 0.85 : 0.5}
+            className={filled ? styles.cellFilled : undefined}
+            style={filled ? { animationDelay: `${(i % 6) * 0.3}s` } : undefined}
           />
         );
       })}

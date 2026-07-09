@@ -1,5 +1,5 @@
 .hero {
-  padding-block: 80px 96px;
+  padding: 70px 0;
 }
 
 .grid {
@@ -7,6 +7,22 @@
   grid-template-columns: 1.1fr 0.9fr;
   gap: 64px;
   align-items: center;
+}
+
+/* ---------- entrance animation ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  animation: fadeInUp 0.75s var(--ease-standard) both;
 }
 
 /* ---------- copy ---------- */
@@ -120,29 +136,97 @@
   justify-content: center;
 }
 
+@keyframes weaveFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 .weaveSvg {
   width: 100%;
   max-width: 340px;
+  animation: weaveFloat 6s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.cellFilled {
+  animation: twinkle 3.6s ease-in-out infinite;
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE — mobile hero gets a woven "watermark"
+   background instead of a stacked block
    ============================================ */
 @media (max-width: 940px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
+  .hero {
+    padding-block: 132px 64px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .hero {
-    padding-block: 140px 64px;
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  .copy {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(
+      circle,
+      var(--color-gold-soft) 0%,
+      transparent 70%
+    );
+    z-index: 0;
+    pointer-events: none;
   }
 
   .visual {
-    order: -1;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 440px;
+    opacity: 0.22;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .weaveSvg {
-    max-width: 220px;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weaveSvg {
+    animation: none;
+  }
+  .cellFilled {
+    animation: none;
   }
 }

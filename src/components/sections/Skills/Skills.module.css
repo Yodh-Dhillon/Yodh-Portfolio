@@ -2,6 +2,52 @@
   padding: 70px 0;
 }
 
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-standard), transform 0.7s var(--ease-standard);
+}
+
+.inView .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.group {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-standard), transform 0.6s var(--ease-standard);
+}
+
+.inView .group {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cellFilled {
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.4s var(--ease-standard);
+}
+
+.inView .cellFilled {
+  transform: rotate(45deg) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .group,
+  .cellFilled {
+    opacity: 1;
+    transform: rotate(45deg);
+    transition: none;
+  }
+  .reveal,
+  .group {
+    transform: none;
+  }
+}
+
 /* ---------- section head ---------- */
 .sectionHead {
   max-width: 640px;
@@ -94,11 +140,13 @@
   transform: rotate(45deg);
   background: transparent;
   border: 1px solid var(--color-border-strong);
+  flex-shrink: 0;
 }
 
 .cellFilled {
   background: var(--color-gold);
   border-color: transparent;
+  transform-origin: center;
 }
 
 /* ---------- learning strip ---------- */

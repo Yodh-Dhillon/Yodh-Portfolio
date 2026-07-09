@@ -5,8 +5,7 @@ export const siteConfig = {
   location: "Ludhiana, Punjab, India",
   email: "yodhdhillon31@gmail.com",
   socials: {
-    github: "https://github.com/YodhDhillon21",
-    linkedin: "https://linkedin.com/in/yodhdhillon",
+    github: "https://github.com/Yodh-Dhillon",
   },
 } as const;
 
