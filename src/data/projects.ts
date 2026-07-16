@@ -11,6 +11,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Maison Dhillon — Fashion E-Commerce Platform",
+    description:
+      "A full-stack fashion e-commerce platform blending ethnic and western style under one brand. Custom design system with light/dark theming, a mobile coverflow product carousel with proximity-based blur effects, URL-driven filtering/sorting/pagination for SEO, and a complete page suite from shop to checkout-ready auth flows.",
+    image: "/images/maison-dhillon-project.png",
+    imageAlt: "Maison Dhillon fashion e-commerce homepage interface",
+    tags: ["Next.js", "TypeScript", "Node.js", "MongoDB", "E-Commerce"],
+    liveUrl: "https://maison-dhillon.vercel.app/",
+    repoUrl: "https://github.com/Yodh-Dhillon/Maison-Dhillon",
+    url: "maison-dhillon.vercel.app",
+  },
+  {
     title: "Tana Bana — Generative Pattern Studio",
     description:
       "A generative pattern engine that weaves seamless, print-ready designs rooted in traditional Punjabi Phulkari embroidery. Deterministic seed-based generation, live symmetry and palette controls, and dual SVG/high-res PNG export built entirely from scratch.",
